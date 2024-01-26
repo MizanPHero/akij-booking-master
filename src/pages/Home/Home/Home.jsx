@@ -1,3 +1,4 @@
+import Discounts from "../Discounts/Discounts";
 import Features from "../Features/Features";
 import Hero from "../Hero/Hero";
 
@@ -7,6 +8,7 @@ const Home = () => {
         <>
             <Hero/>
             <Features/>
+            <Discounts/>
         </>
     );
 };
