@@ -4,9 +4,9 @@ import people from '../../../assets/people.png';
 const Hero = () => {
     return (
         <div className='h-[594px] w-full'>
-            <div className="flex h-[594px]">
+            <div className="flex">
                 {/* Left side with SVG gradient image, slogan, and description */}
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden -z-10">
                     {/* SVG gradient image */}
                     <svg xmlns="http://www.w3.org/2000/svg" width="812" height="594" viewBox="0 0 812 594" fill="none">
                         <path d="M812 0H-59V594H812V0Z" fill="url(#paint0_linear_8_1541)" />
@@ -18,7 +18,7 @@ const Hero = () => {
                         </defs>
                     </svg>
                     {/* Slogan and description */}
-                    <div className="absolute font-lexend text-[56px] text-left text-black top-28 left-32">
+                    <div className="absolute font-lexend text-[56px] text-left text-black top-20 left-32">
                         <p>
                             <span className='text-black'>Best Travel</span>
                             <span className='relative text-[#3554D1]'> Experience
@@ -30,7 +30,7 @@ const Hero = () => {
                 </div>
 
                 {/* Right side with an image */}
-                <div className="w-[620px]">
+                <div className="w-[620px] relative -z-10">
                     <img
                         src={people}
                         alt="Hero Image"

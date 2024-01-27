@@ -52,7 +52,7 @@ const Discounts = () => {
     return (
 
       <div className="max-w-[1200px] mx-auto mt-20">
-        <div className="grid items-center justify-between w-full grid-cols-1 sm:grid-cols-4 gap-9">
+        <div className="grid items-center justify-between w-full grid-cols-1 gap-6 sm:grid-cols-4">
         {discountCards.map((card, index) => (
           <DiscountCard key={index} {...card} />
         ))}

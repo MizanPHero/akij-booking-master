@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lato:wght@300;400;700&family=Lexend:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lato:wght@300;400;700;900&family=Lexend:wght@300;400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -15,4 +15,20 @@ body {
 }
 .discount-card-shadow {
   box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.2);
+}
+.blue-radio input[type="radio"]:checked + label span {
+  background-color: #58a7ff;
+  border-color: #58a7ff;
+  box-shadow: 0px 0px 0px 2.5px white inset;
+}
+
+/* normal radio */
+.normal-radio input[type="radio"]:checked + label span {
+  background-color: #636366;
+  border-color: #636366;
+  box-shadow: 0px 0px 0px 3px white inset;
+}
+.disabledButton {
+  opacity: 50%;
+  cursor: not-allowed;
 }
