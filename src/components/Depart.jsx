@@ -34,7 +34,7 @@ const Depart = ({fullDayOfWeek, numericDay, shortMonth, numericYear, selectDepar
             onClick={toggleDepartMenu}
         >
             <div className="text-left">
-                <div className="flex items-center justify-start gap-6">
+                <div className="flex items-center justify-start gap-3">
                     <p className="font-normal text-[13px] text-[#4A4A4A]">Depart</p>
                     <FaChevronDown className="text-[#008CFF] text-sm"/>
                 </div>

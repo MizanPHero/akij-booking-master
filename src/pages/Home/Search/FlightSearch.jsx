@@ -6,6 +6,7 @@ import From from "../../../components/From";
 import RadioButton from "../../../components/RadioButton";
 import Return from "../../../components/Return";
 import To from "../../../components/To";
+import Passengers from "../Passengers/Passengers";
 
 
 const FlightSearch = () => {
@@ -56,10 +57,40 @@ const FlightSearch = () => {
         setToSelectedOption(tempFromOption);
     };
 
+
+
+
+    // passenger information
+    const [cabinClass, setCabinClass] = useState('Economy');
+    const [adultValue, setAdultValue] = useState(1);
+    const [childrenValue, setChildrenValue] = useState(0);
+    const [childrenAges, setChildrenAges] = useState([]);
+    const [infantAges, setInfantAges] = useState([]);
+    const [infantValue, setInfantValue] = useState(0);
+
+
+    const passengerState = {
+        cabinClass,
+        setCabinClass,
+        adultValue,
+        setAdultValue,
+        childrenValue,
+        setChildrenValue,
+        childrenAges,
+        setChildrenAges,
+        infantAges,
+        setInfantAges,
+        infantValue,
+        setInfantValue,
+      };
+
+      console.log('Passenger State:', passengerState);
     
     // calendar
 	const currentDate = dayjs();
+
 	const [selectDepartDate, setSelectDepartDate] = useState(currentDate);
+    const [selectReturnDate, setSelectReturnDate] = useState(currentDate);
 
 
     //data evaluation
@@ -93,11 +124,13 @@ const FlightSearch = () => {
     console.log(formattedDateYYYYMMDD); // Result: 2024-01-25
 
 
-    // const dateStringReturn = selectReturnDate.toDate().toDateString();
-    // const datePartsReturn = dateStringReturn.split(' ');
-    // const abbreviatedDayOfWeekReturn = datePartsReturn[0]; 
-    // const fullDayOfWeekReturn = getFullDayName(abbreviatedDayOfWeekReturn);
-    // const formattedDateWithFullDayReturn = `${selectReturnDate.format('D')} ${selectReturnDate.format('MMMM YYYY')}`;
+    const dateStringReturn = selectReturnDate.toDate().toDateString();
+    const datePartsReturn = dateStringReturn.split(' ');
+    const abbreviatedDayOfWeekReturn = datePartsReturn[0]; 
+    const fullDayOfWeekReturn = getFullDayName(abbreviatedDayOfWeekReturn);
+    const numericDayReturn = `${selectReturnDate.format('D')}`;
+    const numericYearReturn = `${selectReturnDate.format('YY')}`;
+    const shortMonthReturn = `${selectReturnDate.format('MMM')}`
 
 
 
@@ -117,7 +150,7 @@ const FlightSearch = () => {
 
 
     return (
-        <div className='max-w-[1200px] mx-auto bg-white pt-[25px] pb-5'>
+        <div className='max-w-[1200px] mx-auto bg-white pt-[25px] pb-5 search-shadow-radius'>
 
 
 
@@ -172,14 +205,18 @@ const FlightSearch = () => {
 
 
                 <Return
-                    fullDayOfWeek = {fullDayOfWeek}
-                    numericDay = {numericDay}
-                    shortMonth = {shortMonth}
-                    numericYear = {numericYear}
-                    setSelectDepartDate = {setSelectDepartDate}
-                    selectDepartDate = {selectDepartDate}
+                    fullDayOfWeekReturn = {fullDayOfWeekReturn}
+                    numericDayReturn = {numericDayReturn}
+                    shortMonthReturn = {shortMonthReturn}
+                    numericYearReturn = {numericYearReturn}
+                    setSelectReturnDate = {setSelectReturnDate}
+                    selectReturnDate = {selectReturnDate}
                 />
 
+                 {/* Separator */}
+                 <div className="mx-2 border-r border-[#E7E7E7]"></div>
+
+                 <Passengers {...passengerState} />
 
 
             </div>
