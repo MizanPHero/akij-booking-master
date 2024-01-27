@@ -8,7 +8,7 @@ const Search = () => {
     setActiveTab(tabNumber);
   };
 
-
+  
   return (
     <div className="max-w-[1200px] mx-auto">
       <div className="flex">
@@ -48,7 +48,7 @@ const Search = () => {
         )}
 
         {activeTab === 2 && (
-          <div>
+          <div className="h-[259px]">
             {/* Content for Hotels tab */}
             <p>Hotel details go here.</p>
           </div>

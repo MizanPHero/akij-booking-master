@@ -9,8 +9,6 @@ const From = ({handleFromSelect, fromSelectedOption}) => {
     setIsFromOpen(!isFromOpen);
     };
 
-
-
     return (
         <button
             type="button"
@@ -65,32 +63,7 @@ const From = ({handleFromSelect, fromSelectedOption}) => {
                                 Charles de Gaulle Airport
                             </p>
                         </div>
-                        {/* <div
-                            className="px-4 py-2 rounded-md hover:bg-fadeGray hover:bg-opacity-40"
-                            onClick={() =>
-                                handleFromSelect("Paris", "Charles de Gaulle Airport")
-                            }
-                        >
-                            <h2 className="text-base font-medium text-deepDark">
-                                Paris
-                            </h2>
-                            <p className="text-sm font-normal text-lightDark">
-                                Charles de Gaulle Airport
-                            </p>
-                        </div>
-                        <div
-                            className="px-4 py-2 rounded-md hover:bg-fadeGray hover:bg-opacity-40"
-                            onClick={() =>
-                                handleFromSelect("London", "London Airport")
-                            }
-                        >
-                            <h2 className="text-base font-medium text-deepDark">
-                                London
-                            </h2>
-                            <p className="text-sm font-normal text-lightDark">
-                                London Airport
-                            </p>
-                        </div> */}
+                        
                     </div>
                 </div>
             )}

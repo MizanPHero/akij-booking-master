@@ -37,3 +37,6 @@ body {
   box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.2);
   border-radius: 0px 8px 8px 8px;
 }
+.switch-shadow {
+  box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.1);
+}

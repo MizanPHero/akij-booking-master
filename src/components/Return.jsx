@@ -42,7 +42,7 @@ const Return = ({ fullDayOfWeekReturn, numericDayReturn, shortMonthReturn, numer
         </div>
         {disabled ? (
           <p className="text-[#9B9B9B] text-xs font-black mt-3">
-            Tap to add a return date for bigger discounts
+            <span>Tap to add a return date</span> <span className="block">for bigger discounts</span>
           </p>
         ) : (
           <div className="text-left">
