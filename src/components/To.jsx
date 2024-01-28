@@ -29,8 +29,8 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
                 <p className="font-normal text-sm text-[#4A4A4A]">From</p>
                 <p className="text-[26px] font-black text-black">
                     {toSelectedOption?.name
-                        ? toSelectedOption.name.length > 14
-                            ? `${toSelectedOption.name.slice(0, 14)}..`
+                        ? toSelectedOption.name.length > 12
+                            ? `${toSelectedOption.name.slice(0, 12)}..`
                             : toSelectedOption.name
                         : "Select"}
                 </p>

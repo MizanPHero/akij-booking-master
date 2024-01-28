@@ -32,8 +32,8 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
           <p className="font-normal text-sm text-[#4A4A4A]">From</p>
           <p className="text-[26px] font-black text-black">
             {fromSelectedOption?.name
-              ? fromSelectedOption.name.length > 14
-                ? `${fromSelectedOption.name.slice(0, 14)}..`
+              ? fromSelectedOption.name.length > 12
+                ? `${fromSelectedOption.name.slice(0, 12)}..`
                 : fromSelectedOption.name
               : "Select"}
           </p>

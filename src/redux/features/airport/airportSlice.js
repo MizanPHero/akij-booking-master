@@ -15,9 +15,6 @@ const initialState = {
 }
 
 
-
-
-// Replace 'YOUR_ACCESS_KEY' with your actual access key
 const apiKey = import.meta.env.VITE_API_KEY;
 const secretCode = import.meta.env.VITE_SECRET_CODE;
 
