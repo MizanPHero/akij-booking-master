@@ -7,6 +7,7 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
     const [searchTitle, setSearchTitle] = useState("");
     
     const handleFromToggle = () => {
+      
     setIsFromOpen(!isFromOpen);
     };
     
@@ -14,15 +15,19 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
     const handleInputClick = (e) => {
         
         e.stopPropagation();
-      };
+    };
 
-
+      // console.log(airports);
     
+
+      
+
+
 
     return (
       <button
         type="button"
-        className="relative w-full min-w-60 py-[10px] pl-[19px] mr-1"
+        className="relative w-full min-w-72 py-[10px] pl-[19px] mr-1"
         id="menu-button"
         aria-expanded={isFromOpen}
         aria-haspopup="true"
@@ -32,15 +37,15 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
           <p className="font-normal text-sm text-[#4A4A4A]">From</p>
           <p className="text-[26px] font-black text-black">
             {fromSelectedOption?.name
-              ? fromSelectedOption.name.length > 13
-                ? `${fromSelectedOption.name.slice(0, 13)}..`
+              ? fromSelectedOption.name.length > 17
+                ? `${fromSelectedOption.name.slice(0, 17)}...`
                 : fromSelectedOption.name
               : "Select"}
           </p>
           <p className="font-normal text-sm text-[#4A4A4A]">
             {fromSelectedOption?.airport
-              ? fromSelectedOption.airport.length > 29
-                ? `${fromSelectedOption.airport.slice(1, 29)}...`
+              ? fromSelectedOption.airport.length > 38
+                ? `${fromSelectedOption.airport.slice(1, 38)}...`
                 : fromSelectedOption.airport
               : "Select your destination"}
           </p>
@@ -48,7 +53,7 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
 
         {isFromOpen && (
           <div
-            className="absolute left-0 divide-y-2 divide-slate-200 top-24 mt-2 z-50 origin-top-right bg-[#fff] rounded-md shadow-lg w-[260px] h-80 overflow-x-hidden overflow-y-scroll"
+            className="absolute left-0 divide-y-2 divide-slate-200 top-24 mt-2 z-50 origin-top-right bg-[#fff] rounded-md shadow-lg w-[105%] h-80 overflow-x-hidden overflow-y-scroll"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
@@ -79,7 +84,7 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
                 if (searchTitle === "") {
                   return value;
                 } else if (
-                  value.city_name?.toLowerCase().includes(searchTitle.toLowerCase())
+                  value.city_name?.toLowerCase().includes(searchTitle.toLowerCase()) || value.country_name?.toLowerCase().includes(searchTitle.toLowerCase())
                 ) {
                   return value;
                 }
@@ -98,8 +103,8 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
                   }}
                 >
                   <div className="text-left">
-                    <p className="text-base font-medium text-black">
-                      {airport.city_name}
+                    <p className="text-base font-normal text-black">
+                      {airport.city_name} - {airport.country_name}
                     </p>
                     <p className="text-sm font-normal text-black text-opacity-80">
                       {airport.airport_name}

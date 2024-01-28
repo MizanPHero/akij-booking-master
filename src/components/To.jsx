@@ -19,7 +19,7 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
     return (
         <button
             type="button"
-            className="relative w-full min-w-60 py-[10px] pl-[19px] mr-1 "
+            className="relative w-full min-w-72 py-[10px] pl-[19px] mr-1 "
             id="menu-button"
             aria-expanded={isToOpen}
             aria-haspopup="true"
@@ -29,26 +29,23 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
                 <p className="font-normal text-sm text-[#4A4A4A]">To</p>
                 <p className="text-[26px] font-black text-black">
                     {toSelectedOption?.name
-                        ? toSelectedOption.name.length > 13
-                            ? `${toSelectedOption.name.slice(0, 13)}..`
+                        ? toSelectedOption.name.length > 17
+                            ? `${toSelectedOption.name.slice(0, 17)}..`
                             : toSelectedOption.name
                         : "Select"}
                 </p>
                 <p className="font-normal text-sm text-[#4A4A4A]">
                     {toSelectedOption?.airport
-                        ? toSelectedOption.airport.length > 29
-                            ? `${toSelectedOption.airport.slice(1, 29)}...`
+                        ? toSelectedOption.airport.length > 38
+                            ? `${toSelectedOption.airport.slice(1, 38)}...`
                             : toSelectedOption.airport
                         : "Select your destination"}
                 </p>
             </div>
 
-
-
-
             {isToOpen && (
                 <div
-                    className="absolute -left-2 divide-y-2 divide-slate-200 w-[260px] h-80 overflow-x-hidden overflow-y-scroll top-24 mt-2 z-50 origin-top-left bg-[#fff] rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="absolute -left-2 divide-y-2 divide-slate-200 w-[105%] h-80 overflow-x-hidden overflow-y-scroll top-24 mt-2 z-50 origin-top-left bg-[#fff] rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="menu-button"
@@ -62,9 +59,6 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
               onChange={(e) => setSearchTitle(e.target.value)}
             /> */}
 
-
-
-
             <label className="relative block w-[99%] mx-auto">
               <span className="sr-only">Search</span>
               <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -75,25 +69,12 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
               <input onChange={(e) => setSearchTitle(e.target.value)} onClick={handleInputClick} className="block w-full py-2 pr-3 mt-1 bg-white border rounded-md shadow-sm placeholder:italic placeholder:text-slate-400 border-slate-300 pl-9 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search..." type="text"/>
             </label>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             {airports
               .filter((value) => {
                 if (searchTitle === "") {
                   return value;
                 } else if (
-                  value.city_name?.toLowerCase().includes(searchTitle.toLowerCase())
+                  value.city_name?.toLowerCase().includes(searchTitle.toLowerCase()) || value.country_name?.toLowerCase().includes(searchTitle.toLowerCase())
                 ) {
                   return value;
                 }
@@ -112,8 +93,8 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
                   }}
                 >
                   <div className="text-left">
-                    <p className="text-base font-medium text-black">
-                      {airport.city_name}
+                    <p className="text-base font-normal text-black">
+                      {airport.city_name} - {airport.country_name}
                     </p>
                     <p className="text-sm font-normal text-black text-opacity-80">
                       {airport.airport_name}
@@ -126,7 +107,6 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
               ))}
                 </div>
             )}
-
         </button>
     );
 };

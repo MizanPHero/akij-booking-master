@@ -44,9 +44,9 @@ const FlightSearch = () => {
         dispatch(getAirPortSuggestion());
     }, []);
 
-    if (isLoading) {
-        return <Spinner />;
-    }
+    // if (isLoading) {
+    //     return <Spinner />;
+    // }
 
     if (isError) {
         return <p>Error loading airports.</p>;
@@ -83,16 +83,12 @@ const FlightSearch = () => {
 
 
     const handleSearch = (e) => {
+        e.stopPropagation();
         e.preventDefault();
+        
 
         dispatch(flightSearch(searchBody))
     };
-
-
-
-
-
-
 
 
     //for radio button
@@ -204,6 +200,8 @@ const FlightSearch = () => {
     return (
         <div className='max-w-[1200px] mx-auto bg-white pt-[25px] pb-5 search-shadow-radius'>
 
+            { isLoading &&  <Spinner/> }
+
             {/* top line elements */}
             <div className="flex flex-col items-center justify-between mx-5 sm:flex-row">
                 <div className="flex gap-8">
@@ -271,8 +269,8 @@ const FlightSearch = () => {
             </div>
 
 
-            <div onClick={handleSearch} className="flex items-center justify-center mt-4">
-                <button className="bg-[#3554D1] hover:bg-opacity-90 rounded-[10px] text-white text-base font-lexend font-normal px-10 py-[14px]">Search</button>
+            <div className="flex items-center justify-center mt-4">
+                <button onClick={handleSearch} className="bg-[#3554D1] hover:bg-opacity-90 rounded-[10px] text-white text-base font-lexend font-normal px-10 py-[14px]">Search</button>
             </div>
 
 

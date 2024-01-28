@@ -48,9 +48,9 @@ const Search = () => {
         )}
 
         {activeTab === 2 && (
-          <div className="h-[259px]">
+          <div className="h-[259px] max-w-[1200px] mx-auto bg-white pt-[25px] pb-5 search-shadow-radius">
             {/* Content for Hotels tab */}
-            <p>Hotel details go here.</p>
+            <p className="text-center">Hotel details go here.</p>
           </div>
         )}
       </div>
