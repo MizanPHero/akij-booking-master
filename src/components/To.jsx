@@ -48,7 +48,7 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
 
             {isToOpen && (
                 <div
-                    className="absolute -left-2 divide-slate-200 w-[260px] h-80 overflow-x-hidden overflow-y-scroll top-24 mt-2 z-50 origin-top-left bg-[#fff] rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="absolute -left-2 divide-y-2 divide-slate-200 w-[260px] h-80 overflow-x-hidden overflow-y-scroll top-24 mt-2 z-50 origin-top-left bg-[#fff] rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="menu-button"
