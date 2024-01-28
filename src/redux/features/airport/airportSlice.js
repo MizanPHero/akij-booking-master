@@ -28,10 +28,9 @@ export const getAirPortSuggestion = createAsyncThunk('airportSlice/getAirPortSug
             headers: {
                 'apikey': apiKey,
                 'secretecode': secretCode,
-                // Add any other headers if required
             }
         });
-        console.log(response);
+        // console.log(response); //loading data ok
         return response.data;
     } catch (error) {
         throw error.response ? error.response.data : error.message;
@@ -49,7 +48,7 @@ const airportSlice = createSlice({
         })
         .addCase(getAirPortSuggestion.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.airports = action.payload.data;
+            state.airports = action.payload;
         })
         .addCase(getAirPortSuggestion.rejected, (state, action) => {
             state.isLoading = false;

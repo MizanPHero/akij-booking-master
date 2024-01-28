@@ -36,21 +36,21 @@ const FlightSearch = () => {
 
 
     const dispatch = useDispatch();
-  const { airports, isLoading, isError } = useSelector((state) => state.airportSlice);
+    const { airports, isLoading, isError } = useSelector((state) => state.airportSlice);
 
-  useEffect(() => {
-    dispatch(getAirPortSuggestion());
-  }, []); // Corrected dependency array
+    useEffect(() => {
+        dispatch(getAirPortSuggestion());
+    }, []);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+    if (isLoading) {
+        return <Spinner />;
+    }
 
-  if (isError) {
-    return <p>Error loading airports.</p>;
-  }
+    if (isError) {
+        return <p>Error loading airports.</p>;
+    }
 
-  console.log(airports);
+ 
 
 
 
@@ -183,7 +183,7 @@ const FlightSearch = () => {
 
             <div className="flex justify-between border rounded-2xl border-[#E7E7E7] mt-3 mx-5">
 
-                <From fromSelectedOption={fromSelectedOption} handleFromSelect={handleFromSelect} />
+                <From fromSelectedOption={fromSelectedOption} handleFromSelect={handleFromSelect} airports={airports}/>
 
                 {/* Separator */}
                 <div className="relative mx-2 border-r border-[#E7E7E7]">
@@ -195,7 +195,7 @@ const FlightSearch = () => {
                     </button>
                 </div>
 
-                <To toSelectedOption={toSelectedOption} handleToSelect={handleToSelect} />
+                <To toSelectedOption={toSelectedOption} handleToSelect={handleToSelect} airports={airports}/>
 
 
                 {/* Separator */}
