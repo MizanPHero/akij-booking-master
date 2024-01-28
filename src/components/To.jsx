@@ -26,7 +26,7 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
             onClick={handleToToggle}
         >
             <div className="flex flex-col items-start">
-                <p className="font-normal text-sm text-[#4A4A4A]">From</p>
+                <p className="font-normal text-sm text-[#4A4A4A]">To</p>
                 <p className="text-[26px] font-black text-black">
                     {toSelectedOption?.name
                         ? toSelectedOption.name.length > 13

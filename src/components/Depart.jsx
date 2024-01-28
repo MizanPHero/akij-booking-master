@@ -65,13 +65,15 @@ const Depart = ({fullDayOfWeek, numericDay, shortMonth, numericYear, selectDepar
                           <div className="flex items-center gap-10 ">
                             <GrFormPrevious
                               className="w-5 h-5 transition-all cursor-pointer hover:scale-105"
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation();
                                 setToday(today.month(today.month() - 1));
                               }}
                             />
                             <h1
                               className="transition-all cursor-pointer hover:scale-105"
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation();
                                 setToday(currentDate);
                               }}
                             >
@@ -79,7 +81,8 @@ const Depart = ({fullDayOfWeek, numericDay, shortMonth, numericYear, selectDepar
                             </h1>
                             <GrFormNext
                               className="w-5 h-5 transition-all cursor-pointer hover:scale-105"
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation();
                                 setToday(today.month(today.month() + 1));
                               }}
                             />

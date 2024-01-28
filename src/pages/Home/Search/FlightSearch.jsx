@@ -8,13 +8,13 @@ import RadioButton from "../../../components/RadioButton";
 import Return from "../../../components/Return";
 import Spinner from "../../../components/Spinner";
 import To from "../../../components/To";
-import { getAirPortSuggestion } from "../../../redux/features/airport/airportSlice";
+import { flightSearch, getAirPortSuggestion } from "../../../redux/features/airport/airportSlice";
 import Passengers from "../Passengers/Passengers";
 
 
 const FlightSearch = () => {
 
-    const [selectedOption, setSelectedOption] = useState('oneway');
+    const [selectedOption, setSelectedOption] = useState('OneWay');
     //from destination
     const [fromSelectedOption, setFromSelectedOption] = useState(null);
     //to destination
@@ -33,6 +33,8 @@ const FlightSearch = () => {
 	const [selectDepartDate, setSelectDepartDate] = useState(currentDate);
     const [selectReturnDate, setSelectReturnDate] = useState(currentDate);
 
+    const formattedDepartDate = selectDepartDate.toISOString().split('T')[0];
+
 
 
     const dispatch = useDispatch();
@@ -50,7 +52,44 @@ const FlightSearch = () => {
         return <p>Error loading airports.</p>;
     }
 
- 
+
+    const searchBody = {
+        journey_type: selectedOption,
+        segment: [
+            {
+                departure_airport_type: "AIRPORT",
+                departure_airport: fromSelectedOption?.airportCode,
+                arrival_airport_type: "AIRPORT",
+                arrival_airport: toSelectedOption?.airportCode,
+                departure_date: formattedDepartDate,
+            }
+        ],
+        travelers_adult: adultValue,
+        travelers_child: childrenValue,
+        travelers_child_age: 0,
+        travelers_infants: infantValue,
+        travelers_infants_age: [""],
+        preferred_carrier: [null],
+        non_stop_flight: "any",
+        baggage_option: "any",
+        booking_class: cabinClass,
+        supplier_uid: "all",
+        partner_id: "",
+        language: "en"
+    };
+
+    // console.log(searchBody);
+
+
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+
+        dispatch(flightSearch(searchBody))
+    };
+
+
+
 
 
 
@@ -61,9 +100,9 @@ const FlightSearch = () => {
         setSelectedOption(event.target.value);
     };
     const options = [
-        { id: "oneway", value: "oneway", label: "One Way" },
-        { id: "roundtrip", value: "roundtrip", label: "Round Trip" },
-        { id: "multicity", value: "multicity", label: "Multi City" },
+        { id: "oneway", value: "OneWay", label: "One Way" },
+        { id: "roundtrip", value: "RoundTrip", label: "Round Trip" },
+        { id: "multicity", value: "MultiCity", label: "Multi City" },
     ];
 
 
@@ -147,9 +186,9 @@ const FlightSearch = () => {
 
 
 
-    const formattedDateYYYYMMDD = selectDepartDate.toISOString().split('T')[0];
+    
 
-    console.log(formattedDateYYYYMMDD); // Result: 2024-01-25
+    // console.log(formattedDateYYYYMMDD); // Result: 2024-01-25
 
 
     const dateStringReturn = selectReturnDate.toDate().toDateString();
@@ -232,7 +271,7 @@ const FlightSearch = () => {
             </div>
 
 
-            <div className="flex items-center justify-center mt-4">
+            <div onClick={handleSearch} className="flex items-center justify-center mt-4">
                 <button className="bg-[#3554D1] hover:bg-opacity-90 rounded-[10px] text-white text-base font-lexend font-normal px-10 py-[14px]">Search</button>
             </div>
 

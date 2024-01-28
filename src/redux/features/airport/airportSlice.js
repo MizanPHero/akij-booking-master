@@ -5,10 +5,12 @@ import axios from "axios";
 
 const baseUrl = 'https://devapi.innotraveltech.com'
 const airportSuggestionUrl = `${baseUrl}/tools/airport-autosuggetion-data`
+const flightSearchUrl = `${baseUrl}/flight/search`
 
 
 const initialState = {
-    airports : [],
+    airports: [],
+    flightSearchResult: [],
     isLoading: null,
     isError: false,
     error: '',
@@ -34,24 +36,55 @@ export const getAirPortSuggestion = createAsyncThunk('airportSlice/getAirPortSug
     }
 })
 
+
+export const flightSearch = createAsyncThunk('airportSlice/flightSearch', async (data) => {
+    try {
+        const response = await axios.post(flightSearchUrl, data, {
+            headers: {
+                'apikey': apiKey,
+                'secretecode': secretCode,
+            }
+        });
+        console.log(response); 
+        return response.data;
+    } catch (error) {
+        throw error.response ? error.response.data : error.message;
+    }
+})
+
+
 const airportSlice = createSlice({
     name: 'airportSlice',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getAirPortSuggestion.pending, (state) => {
-            state.isLoading = true;
-            state.error = false;
-        })
-        .addCase(getAirPortSuggestion.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.airports = action.payload;
-        })
-        .addCase(getAirPortSuggestion.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = true;
-            state.error = action.error.message;
-        })
+        builder
+            .addCase(getAirPortSuggestion.pending, (state) => {
+                state.isLoading = true;
+                state.error = false;
+            })
+            .addCase(getAirPortSuggestion.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.airports = action.payload;
+            })
+            .addCase(getAirPortSuggestion.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.error = action.error.message;
+            })
+            .addCase(flightSearch.pending, (state) => {
+                state.isLoading = true;
+                state.error = false;
+            })
+            .addCase(flightSearch.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.flightSearchResult = action.payload;
+            })
+            .addCase(flightSearch.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.error = action.error.message;
+            })
     }
 });
 
