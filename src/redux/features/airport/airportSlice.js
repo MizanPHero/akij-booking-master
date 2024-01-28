@@ -45,7 +45,7 @@ export const flightSearch = createAsyncThunk('airportSlice/flightSearch', async 
                 'secretecode': secretCode,
             }
         });
-        console.log(response); 
+        // console.log(response); 
         return response.data;
     } catch (error) {
         throw error.response ? error.response.data : error.message;
@@ -78,7 +78,10 @@ const airportSlice = createSlice({
             })
             .addCase(flightSearch.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.flightSearchResult = action.payload;
+                state.flightSearchResult = action.payload.data;
+                if (action.payload.status === 'success') {
+                    localStorage.setItem('searched-data', JSON.stringify(action.payload.data))
+                } else localStorage.removeItem('searched-data')
             })
             .addCase(flightSearch.rejected, (state, action) => {
                 state.isLoading = false;

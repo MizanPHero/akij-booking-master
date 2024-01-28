@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import switchIcon from "../../../assets/switch.png";
 import Depart from "../../../components/Depart";
 import From from "../../../components/From";
@@ -13,6 +14,10 @@ import Passengers from "../Passengers/Passengers";
 
 
 const FlightSearch = () => {
+
+    let location = useLocation();
+    let resultPage = (location.pathname == '/search-result');
+    const naviagte = useNavigate();
 
     const [selectedOption, setSelectedOption] = useState('OneWay');
     //from destination
@@ -87,10 +92,19 @@ const FlightSearch = () => {
         e.preventDefault();
         
 
-        dispatch(flightSearch(searchBody))
+        dispatch(flightSearch(searchBody)).then((result) => {
+            if (result.payload.status) {
+                if (!resultPage) {
+                    naviagte('/search-result')
+                }
+            } else {
+                console.log('no route found, search again');
+            }
+        })
+
     };
 
-
+    
     //for radio button
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -195,10 +209,11 @@ const FlightSearch = () => {
     const numericYearReturn = `${selectReturnDate.format('YY')}`;
     const shortMonthReturn = `${selectReturnDate.format('MMM')}`
 
+    
 
 
     return (
-        <div className='max-w-[1200px] mx-auto bg-white pt-[25px] pb-5 search-shadow-radius'>
+        <div className={`max-w-[1200px] mx-auto bg-white pt-[25px] pb-5 ${resultPage ? 'flight-details' : 'search-shadow-radius'}`}>
 
             { isLoading &&  <Spinner/> }
 

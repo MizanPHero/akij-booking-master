@@ -5,6 +5,7 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
 
     const [isFromOpen, setIsFromOpen] = useState(false);
     const [searchTitle, setSearchTitle] = useState("");
+    // const dropdownRef = useRef(null);
     
     const handleFromToggle = () => {
       
@@ -17,10 +18,22 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
         e.stopPropagation();
     };
 
-      // console.log(airports);
+    // console.log(airports);
+
+    // const handleClickOutside = (e) => {
+    //   if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+    //     setIsFromOpen(false);
+    //   }
+    // };
     
 
-      
+    // useEffect(() => {
+    //   document.addEventListener('click', handleClickOutside);
+  
+    //   return () => {
+    //     document.removeEventListener('click', handleClickOutside);
+    //   };
+    // }, []);
 
 
 
@@ -32,6 +45,7 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
         aria-expanded={isFromOpen}
         aria-haspopup="true"
         onClick={handleFromToggle}
+        // ref={dropdownRef}
       >
         <div className="flex flex-col items-start">
           <p className="font-normal text-sm text-[#4A4A4A]">From</p>
@@ -84,11 +98,11 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
                 if (searchTitle === "") {
                   return value;
                 } else if (
-                  value.city_name?.toLowerCase().includes(searchTitle.toLowerCase()) || value.country_name?.toLowerCase().includes(searchTitle.toLowerCase())
+                  value.city_name?.toLowerCase().includes(searchTitle.toLowerCase()) || value.country_name?.toLowerCase().includes(searchTitle.toLowerCase()) || value.code?.toLowerCase().includes(searchTitle.toLowerCase())
                 ) {
                   return value;
                 }
-              })
+              }).slice(0,10)
               .map((airport) => (
                 <div
                   key={airport.code}

@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 const To = ({handleToSelect, toSelectedOption, airports}) => {
     
     const [isToOpen, setIsToOpen] = useState(false);
     const [searchTitle, setSearchTitle] = useState("");
+    const dropdownRef = useRef(null);
     
     const handleToToggle = () => {
     setIsToOpen(!isToOpen);
@@ -14,7 +15,25 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
     const handleInputClick = (e) => {
         
         e.stopPropagation();
+    };
+
+
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsToOpen(false);
+      }
+    };
+    
+
+    useEffect(() => {
+      document.addEventListener('click', handleClickOutside);
+  
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
       };
+    }, []);
+
+
 
     return (
         <button
@@ -24,6 +43,7 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
             aria-expanded={isToOpen}
             aria-haspopup="true"
             onClick={handleToToggle}
+            ref={dropdownRef}
         >
             <div className="flex flex-col items-start">
                 <p className="font-normal text-sm text-[#4A4A4A]">To</p>
@@ -74,7 +94,7 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
                 if (searchTitle === "") {
                   return value;
                 } else if (
-                  value.city_name?.toLowerCase().includes(searchTitle.toLowerCase()) || value.country_name?.toLowerCase().includes(searchTitle.toLowerCase())
+                  value.city_name?.toLowerCase().includes(searchTitle.toLowerCase()) || value.country_name?.toLowerCase().includes(searchTitle.toLowerCase()) || value.code?.toLowerCase().includes(searchTitle.toLowerCase())
                 ) {
                   return value;
                 }
