@@ -11,15 +11,12 @@ import troly from "../../assets/small-icons/troly.svg";
 import StopIndicator from "../../components/StopIndicator";
 
 const FlightCard = ({ flight }) => {
-
+  
   const [isOpen, setIsOpen] = useState(false)
   
-
-  const handleDetailsToggle = () => {
-      
+  const handleDetailsToggle = () => {  
     setIsOpen(!isOpen);
-    };
-
+  };
 
   const {
     total_price,
@@ -42,11 +39,7 @@ const FlightCard = ({ flight }) => {
   const formattedDepartureDate = departureDateTime.toISOString().split('T')[0];
   const formattedDepartureTime = departureDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
 
-  // console.log("Arrival Date:", formattedArrivalDate);
-  // console.log("Arrival Time:", formattedArrivalTime);
-  
-  // console.log("Departure Date:", formattedDepartureDate);
-  // console.log("Departure Time:", formattedDepartureTime);
+
 
  
 
@@ -68,14 +61,14 @@ const FlightCard = ({ flight }) => {
 
   const formattedDuration = formatDuration(destinationReachTime);
 
-  // console.log("Formatted Duration:", formattedDuration);
 
 
 
-  console.log('first',firstRoute);
+
+  // console.log('first',firstRoute);
   console.log('second', lastRoute);
 
-
+  // console.log(firstRoute.marketing.carrier_logo);
 
   return (
     <>
@@ -100,7 +93,7 @@ const FlightCard = ({ flight }) => {
         
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            <img src={marketing} alt="" />
+            <img src={`https://gtrs-airlineimages.s3.ap-southeast-1.amazonaws.com/icon/` + firstRoute.marketing.carrier_logo} className="h-10 rounded-full" alt="" />
             <div className="flex flex-col gap-1">
               <p className="text-base text-[#151516] font-normal">{firstRoute.marketing.carrier_name}</p>
               <div className="flex items-center gap-4">
@@ -170,7 +163,7 @@ const FlightCard = ({ flight }) => {
           <>
             <div className="fixed top-0 bottom-0 left-0 right-0 z-50 flex flex-col items-center justify-center w-full h-screen overflow-hidden bg-gray-700 bg-opacity-50">
               
-              <div className="flex items-center justify-between w-full max-w-[1200px] mx-auto p-4 rounded-t-md bg-[#3554D1] text-white">
+              <div className="flex items-center justify-between w-full max-w-[1120px] mx-auto px-4 py-2 rounded-t-md bg-[#3554D1] text-white">
                 <h2>Flight Information</h2>
                 <button onClick={handleDetailsToggle} className="text-2xl">
                   <IoClose />
@@ -178,12 +171,11 @@ const FlightCard = ({ flight }) => {
               </div>
 
 
-              <div className="p-4 bg-white w-full max-w-[1200px] mx-auto rounded-b-md font-lexend flight-details">
-
-
+              <div className="p-4 bg-white w-full max-w-[1120px] mx-auto font-lexend flight-details">
 
                 <div className="flex flex-col gap-10 ">
-
+                  
+                  {/* Mappable card */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <img src={marketing} alt="" />
@@ -230,21 +222,25 @@ const FlightCard = ({ flight }) => {
                       <p className="text-xs font-normal font-lexend text-[#151516]">{lastRoute.destination_airport?.city}</p>
                       <p className="text-base font-normal text-[#8592A6]">{lastRoute.destination_airport?.name}</p>
                     </div>
-
-
-                    <div className="flex flex-col items-center gap-3">
-                      <p className=" text-[#008CFF] text-base font-semibold">USD {total_price}</p>
-                      <button className="text-white bg-[#3554D1] px-9 py-[14px] rounded-lg hover:bg-opacity-90">Select</button>
-                    </div>
                   </div>
-                  {/* EXCHANGE INFO */}
+                  {/* flight change information:: separator */}
+
                 </div>
 
                 
 
               </div>
               
-             
+              <div className="flex items-center justify-end w-full max-w-[1120px] mx-auto px-4 py-3 rounded-b-md bg-slate-200 gap-4 text-black">
+                <button onClick={handleDetailsToggle} className="hover:text-white text-[#3554D1] font-medium text-sm border-2 border-[#3554D1]  hover:bg-[#3554D1] px-[18px] py-[5px] rounded-md hover:bg-opacity-90">
+                  Close
+                </button>
+                <button onClick={handleDetailsToggle} className="text-white font-medium text-sm border-2 border-[#3554D1] bg-[#3554D1] px-[18px] py-[5px] rounded-md hover:bg-opacity-90">
+                  Select Flight
+                </button>
+                
+              </div>
+
 
             </div>
           </>
