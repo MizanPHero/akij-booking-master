@@ -98,7 +98,7 @@ const To = ({handleToSelect, toSelectedOption, airports}) => {
                 ) {
                   return value;
                 }
-              })
+              }).slice(0,30)
               .map((airport) => (
                 <div
                   key={airport.code}

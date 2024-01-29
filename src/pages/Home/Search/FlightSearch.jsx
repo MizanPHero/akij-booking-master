@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import switchIcon from "../../../assets/switch.png";
 import Depart from "../../../components/Depart";
 import From from "../../../components/From";
@@ -93,12 +94,20 @@ const FlightSearch = () => {
         
 
         dispatch(flightSearch(searchBody)).then((result) => {
-            if (result.payload.status) {
+            // console.log(result);
+            if (result.payload.status === 'success') {
                 if (!resultPage) {
                     naviagte('/search-result')
                 }
             } else {
-                console.log('no route found, search again');
+                Swal.fire({
+                    title: "No Routes Found",
+                    text: "Please search again",
+                    icon: "warning",
+                    showConfirmButton: false,
+                    timer: 2000
+                  });
+                  console.log(result);
             }
         })
 

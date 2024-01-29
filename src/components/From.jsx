@@ -5,7 +5,7 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
 
     const [isFromOpen, setIsFromOpen] = useState(false);
     const [searchTitle, setSearchTitle] = useState("");
-    // const dropdownRef = useRef(null);
+
     
     const handleFromToggle = () => {
       
@@ -17,24 +17,6 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
         
         e.stopPropagation();
     };
-
-    // console.log(airports);
-
-    // const handleClickOutside = (e) => {
-    //   if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-    //     setIsFromOpen(false);
-    //   }
-    // };
-    
-
-    // useEffect(() => {
-    //   document.addEventListener('click', handleClickOutside);
-  
-    //   return () => {
-    //     document.removeEventListener('click', handleClickOutside);
-    //   };
-    // }, []);
-
 
 
     return (
@@ -102,7 +84,7 @@ const From = ({handleFromSelect, fromSelectedOption, airports}) => {
                 ) {
                   return value;
                 }
-              }).slice(0,10)
+              }).slice(0,30)
               .map((airport) => (
                 <div
                   key={airport.code}

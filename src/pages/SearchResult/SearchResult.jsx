@@ -19,8 +19,7 @@ const SearchResult = () => {
         }
     }, [flightSearchResult])
 
-    // let flights = flightSearchResult ? flightSearchResult : localFlights;
-
+    // console.log(flights[0].flight_group[0].routes.slice(-1)[0]);
     // console.log(localFlights[0].flight_group[0].routes.slice(-1)[0]);
     // console.log(flightSearchResult);
 
