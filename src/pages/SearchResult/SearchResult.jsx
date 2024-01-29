@@ -28,7 +28,7 @@ const SearchResult = () => {
 
             <FlightSearch />
 
-            <div className="flight-list">
+            <div className="mt-16">
                 {flights?.map((flight, i) => (
                     <FlightCard key={i} flight={flight} />
                 ))}

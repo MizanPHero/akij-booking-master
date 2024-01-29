@@ -222,7 +222,7 @@ const FlightSearch = () => {
 
 
     return (
-        <div className={`max-w-[1200px] mx-auto bg-white pt-[25px] pb-5 ${resultPage ? 'flight-details' : 'search-shadow-radius'}`}>
+        <div className={`max-w-[1200px] mx-auto bg-white pt-[25px] pb-5 ${resultPage ? 'flight-details rounded-md' : 'search-shadow-radius'}`}>
 
             { isLoading &&  <Spinner/> }
 
